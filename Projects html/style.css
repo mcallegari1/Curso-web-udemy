@@ -1,0 +1,120 @@
+
+* {
+    font-family: 'Mukta', sans-serif;
+}
+.main-container {
+    width: 100%;
+    background: lightgray;
+}
+
+.float-box {
+    width: 30%;
+    height: 300px;
+    background: #fff;
+    text-align: center;
+    margin: 20px;
+    float: left;
+}
+
+.clear {
+    clear: both;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+ul a {
+    width: 200px;
+    height: 40px;
+    display: block;
+    background: #f7b600 url(../imagens/menu.png);
+    color: #000;
+    text-decoration: none;
+    text-indent: 40px;
+    line-height: 40px;
+}
+
+a:hover {
+    background-position: right bottom;
+    background-color: #f99200;
+    color: #fff;
+}
+
+/* ai o certo era fazer c todas as classes e ids que teriam na nav */
+#home .home a {
+    background-position: right bottom;
+    background-color: #f99200;
+    color: #fff;
+}
+
+body {
+    background: #643d87 url(../imagens/arquivos-necessarios-estilizando-formularios-parte2/fundo.jpg) no-repeat top center;
+}
+
+#container {
+    height: 400px;
+    width: 450px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 0 auto;
+    margin-top: 120px;
+    text-align: center;
+}
+
+img {
+    width: 120px;
+    height: 120px;
+    margin-top: -60px;
+    margin-bottom: 30px;
+}
+
+input{
+    height: 40px;
+    width: 80%;
+    font-size: 18px;
+    margin-bottom: 10px;
+    background-color: #fff;
+    padding-left: 40px;
+    border: none;
+    background-repeat: no-repeat;
+    background-position: 10px;
+}
+
+input.email {
+    background-image: url(../imagens/arquivos-necessarios-estilizando-formularios-parte2/icone-usuario.png);
+}
+
+input.senha {
+    background-image: 
+    url(../imagens/arquivos-necessarios-estilizando-formularios-parte2/icone-cadeado.png);
+}
+
+input.submit {
+    color: #fff;
+    border: 2px solid #db7d00;
+    background-color: #f79300;
+    padding: 5px 20px;
+    height: 45px;
+    width: 90%;
+    background: linear-gradient(to bottom, #faa600, #f68a00);
+}
+
+.submit:hover {
+    cursor: pointer;
+}
+
+.content-checkbox {
+    vertical-align: middle;
+}
+
+input.checkbox {
+    width: 20px;
+    height: 20px;
+    margin: 10px 0;
+
+}
