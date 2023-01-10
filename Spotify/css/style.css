@@ -63,6 +63,10 @@ nav.navbar-transp {
     margin: 10px 15px;
 }
 
+.carousel-control-next, .carousel-control-prev {
+    width: 5%;
+}
+
 .capa {
     text-align: center;
 }
