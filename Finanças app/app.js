@@ -64,6 +64,8 @@ class Bd {
                 continue;
             }
 
+            despesa.id = i;
+
             result.push(despesa);
         }
         return result;
@@ -100,6 +102,9 @@ class Bd {
         return filterData;
     }
 
+    removeDespesa(id){
+        localStorage.removeItem(id);
+    }
 }
 
 let xBd = new Bd();
@@ -156,6 +161,19 @@ function loadDespesas(allDesp = Array(), filter = false){
         row.insertCell(1).innerHTML = aTipos[bd.tipo];
         row.insertCell(2).innerHTML = bd.descricao; 
         row.insertCell(3).innerHTML = bd.valor;
+
+        let btnRemove = document.createElement('button');
+        btnRemove.className = 'btn btn-danger';
+        btnRemove.innerHTML = '<i class="fas fa-times"></i>';
+        btnRemove.id = 'btn_despesa_' + bd.id;
+        btnRemove.onclick = function () {
+            let idDesp = this.id.replace('btn_despesa_', '');
+            xBd.removeDespesa(idDesp);
+
+            window.location.reload();
+        }
+
+        row.insertCell(4).append(btnRemove);
     })
 }
 
@@ -177,5 +195,6 @@ function pesquisaDespesa(){
     )
 
     let rowData = xBd.pesquisar(despesa);
+    console.log(rowData);
     loadDespesas(rowData, true);
 }
