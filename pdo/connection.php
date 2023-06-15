@@ -23,6 +23,10 @@ try{
     $query = 'SELECT * FROM tb_teste';
     $pdoStmt = $conexao->query($query);
     $listData = $pdoStmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // $newStmt = $conexao->prepare($query);
+    // $newStmt->bindValue(':value', $value);
+    // $newStmt->execute();
     
     echo '<pre>';
     print_r($listData);
