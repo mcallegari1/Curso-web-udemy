@@ -1,3 +1,7 @@
+<?php
+require '../../app_tarefas_private/TarefaService.php';
+$action = TarefaService::ACTION_ADD;
+?>
 <html>
 	<head>
 		<meta charset="utf-8" />
@@ -10,6 +14,7 @@
 	</head>
 
 	<body>
+
 		<nav class="navbar navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" href="#">
@@ -19,6 +24,13 @@
 			</div>
 		</nav>
 
+		<? if(isset($_GET['added']) && $_GET['added'] == 1){ ?>
+			<div class="bg-success pt-2 text-white d-flex justify-content-center">
+				<h5>
+					Tarefa adicionada com sucesso!
+				</h5>
+			</div>
+			<? } ?>
 		<div class="container app">
 			<div class="row">
 				<div class="col-md-3 menu">
@@ -36,10 +48,10 @@
 								<h4>Nova tarefa</h4>
 								<hr />
 
-								<form>
+								<form method="post" action="Tarefacontroller.php?action=<?echo $action?>">
 									<div class="form-group">
 										<label>Descrição da tarefa:</label>
-										<input type="text" class="form-control" placeholder="Exemplo: Lavar o carro">
+											<input type="tet" xclass="form-control" name="tarefa" placeholder="Exemplo: Lavar o carro">
 									</div>
 
 									<button class="btn btn-success">Cadastrar</button>
