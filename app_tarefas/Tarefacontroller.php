@@ -1,4 +1,4 @@
 <?php
 
-require_once '../../app_tarefas_private/TarefaController.php';
+require_once '../../libs_curso/app_tarefas_private/TarefaController.php';
 

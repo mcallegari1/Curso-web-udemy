@@ -1,5 +1,5 @@
 <?php
-require '../../app_tarefas_private/TarefaService.php';
+require '../../libs_curso/app_tarefas_private/TarefaService.php';
 $action = TarefaService::ACTION_ADD;
 ?>
 <html>
