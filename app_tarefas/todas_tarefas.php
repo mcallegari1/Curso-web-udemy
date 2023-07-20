@@ -1,4 +1,5 @@
 <?
+$filter = array();
 require 'Tarefacontroller.php';
 ?>
 <html>
@@ -43,6 +44,14 @@ require 'Tarefacontroller.php';
 				divTarefa.insertBefore(form, divTarefa[0]);
 
 			}
+
+			function remove(id) {
+				location.href = 'todas_tarefas.php?action=<?=TarefaService::ACTION_DELETE?>&id=' + id;
+			}
+
+			function changeStatus(id) {
+				location.href = 'todas_tarefas.php?action=<?=TarefaService::ACTION_UPDATE?>&field=status&id=' + id;
+			}
 		</script>
 	</head>
 
@@ -78,9 +87,11 @@ require 'Tarefacontroller.php';
 										<div class="row mb-3 d-flex align-items-center tarefa">
 											<div class="col-sm-9" id="tarefa_<?=$tarefa->id?>"><?= $tarefa->tarefa?> (<?= $tarefa->status ?>) </div>
 											<div class="col-sm-3 mt-2 d-flex justify-content-between">
-												<i class="fas fa-trash-alt fa-lg text-danger"></i>
-												<i class="fas fa-edit fa-lg text-info" onclick="edit(<?=$tarefa->id?>, '<?=$tarefa->tarefa?>')"></i>
-												<i class="fas fa-check-square fa-lg text-success"></i>
+												<i class="fas fa-trash-alt fa-lg text-danger" onclick="remove(<?=$tarefa->id?>)"></i>
+												<? if($tarefa->status == 'pendente'){ ?>
+													<i class="fas fa-edit fa-lg text-info" onclick="edit(<?=$tarefa->id?>, '<?=$tarefa->tarefa?>')"></i>
+													<i class="fas fa-check-square fa-lg text-success" onclick="changeStatus(<?=$tarefa->id?>)"></i>
+												<? } ?>
 											</div>
 										</div>
 									<? } ?>

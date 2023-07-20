@@ -1,4 +1,5 @@
 <?
+$filter = array('status' => 1);
 require 'Tarefacontroller.php';
 ?>
 <html>
@@ -10,6 +11,48 @@ require 'Tarefacontroller.php';
 		<link rel="stylesheet" href="css/estilo.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<script>
+			function edit(id, txt){
+				let form = document.createElement('form');
+				form.method = 'post';
+				form.action = 'Tarefacontroller.php?action=<?=TarefaService::ACTION_UPDATE?>&request=index';
+				form.className = 'row';
+				
+				let inputTarefa = document.createElement('input');
+				inputTarefa.type = 'text';
+				inputTarefa.name = 'tarefa';
+				inputTarefa.className = 'col-9 form-control';
+				inputTarefa.value = txt;
+
+				let inputHidden = document.createElement('input');
+				inputHidden.type = 'hidden';
+				inputHidden.name = 'id';
+				inputHidden.value = id;
+
+				let button = document.createElement('button');
+				button.className = 'col-3 btn btn-info';
+				button.innerHTML = 'Atualizar';
+
+				form.appendChild(inputTarefa);
+				form.appendChild(inputHidden);
+				form.appendChild(button);
+
+
+				let divTarefa = document.getElementById('tarefa_' + id);
+				divTarefa.innerHTML = '';
+
+				divTarefa.insertBefore(form, divTarefa[0]);
+
+			}
+
+			function remove(id) {
+				location.href = 'todas_tarefas.php?action=<?=TarefaService::ACTION_DELETE?>&request=index&id=' + id;
+			}
+
+			function changeStatus(id) {
+				location.href = 'todas_tarefas.php?action=<?=TarefaService::ACTION_UPDATE?>&request=index&field=status&id=' + id;
+			}
+		</script>
 	</head>
 
 	<body>
@@ -39,23 +82,18 @@ require 'Tarefacontroller.php';
 								<h4>Tarefas pendentes</h4>
 								<hr />
 
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Lavar o carro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
-
-								<div class="row mb-3 d-flex align-items-center tarefa">
-									<div class="col-sm-9">Passear com o cachorro</div>
-									<div class="col-sm-3 mt-2 d-flex justify-content-between">
-										<i class="fas fa-trash-alt fa-lg text-danger"></i>
-										<i class="fas fa-edit fa-lg text-info"></i>
-										<i class="fas fa-check-square fa-lg text-success"></i>
-									</div>
-								</div>
+								<?
+									foreach ($data as $tarefa){ ?>
+										<div class="row mb-3 d-flex align-items-center tarefa">
+											<div class="col-sm-9" id="tarefa_<?=$tarefa->id?>"><?= $tarefa->tarefa?></div>
+											<div class="col-sm-3 mt-2 d-flex justify-content-between">
+												<i class="fas fa-trash-alt fa-lg text-danger" onclick="remove(<?=$tarefa->id?>)"></i>
+												<i class="fas fa-edit fa-lg text-info" onclick="edit(<?=$tarefa->id?>, '<?=$tarefa->tarefa?>')"></i>
+												<i class="fas fa-check-square fa-lg text-success" onclick="changeStatus(<?=$tarefa->id?>)"></i>
+											</div>
+										</div>
+									<? } ?>
+								
 							</div>
 						</div>
 					</div>
