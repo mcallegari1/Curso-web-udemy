@@ -1,0 +1,12 @@
+$total: 12;
+
+@function calc-percent($coluna) {
+    @return percentage($coluna/$total);
+}
+
+@for $i from 1 through $total {
+
+    .col-#{$i} {
+        width: calc-percent($i);
+    }
+}
